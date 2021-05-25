@@ -2,32 +2,26 @@
   <div id="app">
     <HelloWorld msg="Hola bebe"/>
     <input v-model = "name">
-    <input v-model = "lastName">
-    <p>{{fullName}}</p>
+    <button v-on:click="format">soy un boton</button>
+
+    <p>{{formatName}}</p>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-
+//@click reemplaza a v-on:click
 export default {
   name: 'App',
   data() {
     return {
-      name: 'valor por',
-      lastName: 'defecto'
-      
+      name: '',
+      formatName: ''
     }
   },
-  //nos sirve para usar otros datos quey a estan aqui:
-  computed: {
-    fullName() {
-      return this.name + ' ' + this.lastName
-    }
-  },
-  watch: { 
-    name (newVal, oldVal) {
-      console.log(newVal, oldVal)
+  methods: {
+    format () {
+      this.formatName = this.name.split(' ').join('-').toUpperCase()
     }
   },
   components: {
