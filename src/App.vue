@@ -1,8 +1,9 @@
 <template>
   <div id="app">
     <HelloWorld msg="Hola bebe"/>
-    <h1>{{msg}}</h1>
-    <p>{{person.name}}</p>
+    <input v-model = "msg">
+    <p>{{msg}}</p>
+    <a :href="url"> link</a>
   </div>
 </template>
 
@@ -13,7 +14,8 @@ export default {
   name: 'App',
   data() {
     return {
-      msg: 'Hola mundo',
+      msg: '',
+      url: 'www.google.com',
       person: {
         name: 'juan'
       }
