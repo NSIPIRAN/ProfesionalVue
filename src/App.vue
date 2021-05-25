@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <HelloWorld msg="Hola bebe"/>
-    <input v-model = "msg">
-    <p>{{msg}}</p>
-    <a :href="url"> link</a>
+    <input v-model = "name">
+    <input v-model = "lastName">
+    <p>{{fullName}}</p>
   </div>
 </template>
 
@@ -14,11 +14,14 @@ export default {
   name: 'App',
   data() {
     return {
-      msg: '',
-      url: 'www.google.com',
-      person: {
-        name: 'juan'
-      }
+      name: 'valor por',
+      lastName: 'defecto'
+      
+    }
+  },
+  computed: {
+    fullName() {
+      return this.name + ' ' + this.lastName
     }
   },
   components: {
