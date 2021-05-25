@@ -19,9 +19,15 @@ export default {
       
     }
   },
+  //nos sirve para usar otros datos quey a estan aqui:
   computed: {
     fullName() {
       return this.name + ' ' + this.lastName
+    }
+  },
+  watch: { 
+    name (newVal, oldVal) {
+      console.log(newVal, oldVal)
     }
   },
   components: {
