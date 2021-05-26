@@ -1,32 +1,49 @@
 <template>
   <div id="app">
-    <HelloWorld msg="Hola bebe"/>
-    <input v-model = "name">
-    <button v-on:click="format">soy un boton</button>
-
-    <p>{{formatName}}</p>
+    <section class="section"> 
+      <nav class="nav">
+        <div class="container">
+          <input type="text" placeholder="Buscar canciones" v-model="searchQuery">
+          <a href=""> <button v-on:click.prevent="search">Buscar</button></a>
+        </div>
+        <p>{{searchMessage}}</p>
+      </nav>
+      <div class="container">
+        <div class="columns">
+          <div class="column" v-for="track in tracks" :key="track.name">
+            {{track.name}} - {{track.artist}}
+          </div>
+        </div>  
+      </div>
+    </section>
   </div>
 </template>
-
+  
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-//@click reemplaza a v-on:click
+const tracks =[
+    {name: 'muchacha', artist: 'luis juan'},
+    {name: 'hasa', artist: 'Kany'},
+    {name: 'vanilaa', artist: 'Vanessa Martin'}
+  ]
 export default {
   name: 'App',
   data() {
     return {
-      name: '',
-      formatName: ''
+      searchQuery:'',
+      tracks: []
     }
   },
   methods: {
-    format () {
-      this.formatName = this.name.split(' ').join('-').toUpperCase()
-    }
+   search(){
+     this.tracks = tracks
+   }
   },
   components: {
-    HelloWorld
+  },
+  computed:{
+    searchMessage(){
+      return ` Encontrados: ${this.tracks.length}`
+    }
   }
 }
 </script>
-
