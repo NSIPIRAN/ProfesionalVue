@@ -2,26 +2,29 @@
   <div id="app">
 
     <MHeader></MHeader>
+    
     <section class="section"> 
-      
         <div class="container">
           <input type="text" placeholder="Buscar canciones" v-model="searchQuery">
           <a href=""> <button v-on:click.prevent="search">Buscar</button></a>
+          <p>{{searchMessage}}</p>
         </div>
-        <p>{{searchMessage}}</p>
-      
-      <div class="container">
-        <div class="columns">
-          <div class="column" 
+      <MLoader v-show="isLoading"> </MLoader>
+      <div class="container " v-show="!isLoading">
+        <div class="columns is-multiline">
+          <div class="column is-one-quarter " 
             v-for="track in tracks" 
             :key="track.id">
-            {{track.name}} - {{track.artists[0].name}}
+            <MTrack :track= "track" >
+
+            </MTrack>
+            
           </div>
         </div>  
       </div>
       
     </section>
-    <MFooter></MFooter>
+    <MFooter ></MFooter>
   </div>
 </template>
 
@@ -31,13 +34,18 @@ import trackService from  './Service/track'
 import MFooter from './components/layout/footer.vue'
 import MHeader from './components/layout/header.vue'
 
+import MTrack from './components/Track.vue'
+import MLoader from './components/shared/Loader.vue'
+
 export default {
   name: 'app',
-  components: { MFooter, MHeader },
+  components: { MFooter, MHeader, MTrack, MLoader},
   data () {
     return {
       searchQuery: '',
-      tracks: []
+      tracks: [],
+
+      isLoading:false
     }
   },
   computed: {
@@ -48,10 +56,15 @@ export default {
   methods: {
     search () {
       if (!this.searchQuery) { return }
+      //cuando se busque:
+      this.isLoading =true
+      //fin de cuando se busque
       trackService.search(this.searchQuery)
         .then(res => {
           this.tracks = res.tracks.items
           console.log(res.tracks.items)
+          //cuando la busqueda termina:
+          this.isLoading =false
         })
     }
   }

@@ -6,7 +6,7 @@
       
         <div class="navbar-brand">
           <a class="navbar-item">
-            <img src="https://bulma.io/images/bulma-type-white.png" alt="Logo">
+            GM
           </a>
           <div class="navbar-burger" @click="showNav = !showNav" :class="{ 'is-active': showNav }">
             <span></span>
