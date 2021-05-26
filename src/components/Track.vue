@@ -26,7 +26,11 @@
           <!-- Left side -->
           <div class="level-left">
             <a class="level-item">
-              <span class="icon has-text-success "> ▶</span>
+              <!-- selectedTrack va a comunicar al padre un evento en este componente-->
+              <span 
+                class="icon has-text-success "
+                @click ="selectedTrack" > ▶
+              </span>
             </a>
           </div>
         </nav>
@@ -39,13 +43,23 @@
 export default {
   props: {
     track: { type: Object, required:true}
+  },
+  methods: {
+    selectedTrack () {
+      // emit logrará comunicar el evento al comp padre con v-bind select e info de id
+      this.$emit('select', this.track.id)
+      this.$bus.$emit('set-track', this.track)
+    
+    }
   }
 }
 </script>
 
-<style lang="scss">
-  .level{
+<style lang="scss" scoped>
+  
+   .level {
     justify-content: center;
+
   }
   
 </style>

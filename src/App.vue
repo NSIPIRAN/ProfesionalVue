@@ -7,7 +7,7 @@
         <div class="container">
           <input type="text" placeholder="Buscar canciones" v-model="searchQuery">
           <a href=""> <button v-on:click.prevent="search">Buscar</button></a>
-          <p>{{searchMessage}}</p>
+          <p class="results">{{searchMessage}}</p>
         </div>
       <MLoader v-show="isLoading"> </MLoader>
       <div class="container " v-show="!isLoading">
@@ -15,8 +15,12 @@
           <div class="column is-one-quarter " 
             v-for="track in tracks" 
             :key="track.id">
-            <MTrack :track= "track" >
-
+            <MTrack 
+              :track= "track"
+               @select= "setSelectedTrack"
+               :class="{ 'is-active' : track.id == selectedTrack }"
+               >
+                
             </MTrack>
             
           </div>
@@ -45,7 +49,9 @@ export default {
       searchQuery: '',
       tracks: [],
 
-      isLoading:false
+      isLoading:false,
+      //llenamos con el id desde setSelectedTrack
+      selectedTrack: ''
     }
   },
   computed: {
@@ -66,10 +72,21 @@ export default {
           //cuando la busqueda termina:
           this.isLoading =false
         })
+    },
+    //enviamos el id a selectedTrack
+    setSelectedTrack(id) {
+      this.selectedTrack= id
     }
   }
 }
 </script>
 <style lang="scss">
   @import "./scss/main.scss";
+  .results{
+    margin: 1em 0;
+  }
+  .is-active {
+    border: 2px #00d1b2 solid
+  }
+
 </style>

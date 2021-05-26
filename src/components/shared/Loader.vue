@@ -1,7 +1,7 @@
 <template>
  <div class="container">
   <div class="loader-wrapper">
-    <div class="loader is-loading"></div>
+    <div class="loader "></div>
   </div>
  </div>
     

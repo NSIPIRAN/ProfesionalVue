@@ -34,6 +34,7 @@
       <p class="subtitle">
         Canciones que te trae Vue
       </p>
+      <MPlayer></MPlayer>
     </div>
   </div>
 
@@ -41,8 +42,11 @@
   </section>
 </template>
 <script>
+import MPlayer from '../Player'
+
 export default {
-   data () {
+  components: {MPlayer},
+  data () {
     return {
       showNav: false
     }
