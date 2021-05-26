@@ -10,8 +10,10 @@
       </nav>
       <div class="container">
         <div class="columns">
-          <div class="column" v-for="track in tracks" :key="track.name">
-            {{track.name}} - {{track.artist}}
+          <div class="column" 
+            v-for="track in tracks" 
+            :key="track.artists[0].name">
+            {{track.name}} - {{track.artists[0].name}}
           </div>
         </div>  
       </div>
@@ -20,11 +22,8 @@
 </template>
   
 <script>
-const tracks =[
-    {name: 'muchacha', artist: 'luis juan'},
-    {name: 'hasa', artist: 'Kany'},
-    {name: 'vanilaa', artist: 'Vanessa Martin'}
-  ]
+import trackService from  './Service/track.js'
+
 export default {
   name: 'App',
   data() {
@@ -35,7 +34,11 @@ export default {
   },
   methods: {
    search(){
-     this.tracks = tracks
+     if(this.searchQuery){return}
+     trackService.search(this.searchQuery)
+      .then(res=>{
+        this.tracks = res.tracks.items
+      })
    }
   },
   components: {
