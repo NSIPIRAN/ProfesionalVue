@@ -3,7 +3,7 @@
       
     <section class="section"> 
         <div class="container">
-          <div class="columns is-centered"> 
+          <div class="columns is-centered is-vcentered "> 
             <div class="column  is-half">
               <input 
                 class="input is-primary" 
@@ -16,8 +16,10 @@
               <div class="column is-narrow ">
                 <a href=""> <button class="button" v-on:click.prevent="search">Buscar</button></a>
               </div>
+              
           </div>
-          <p class="results">{{searchMessage}}</p>
+          <p class="results notification is-success is-light">{{searchMessage}}</p>
+          
         </div>
       <MLoader v-show="isLoading"> </MLoader>
       <div class="container " v-show="!isLoading">
@@ -64,7 +66,7 @@ export default {
   },
   computed: {
     searchMessage () {
-      return `Encontrados: ${this.tracks.length}`
+      return `${this.tracks.length} Devoluciones`
     }
   },
   methods: {
@@ -90,7 +92,7 @@ export default {
 </script>
 <style lang="scss">
   .results{
-    margin: 1em 0;
+    margin: 2em 0;
   }
   .is-active {
     border: 2px #00d1b2 solid

@@ -1,13 +1,14 @@
 <template>
-  <section class="hero is-primary is-medium">
+  <section class="hero is-primary is-small ">
    <!-- Hero head: will stick at the top -->
   <div class="hero-head">
     <nav class="navbar">
       
         <div class="navbar-brand">
-          <a class="navbar-item">
+          <router-link to="/"><a class="navbar-item has-text-weight-bold is-size-3">
             GM
           </a>
+          </router-link>
           <div class="navbar-burger" @click="showNav = !showNav" :class="{ 'is-active': showNav }">
             <span></span>
             <span></span>

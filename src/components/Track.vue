@@ -32,10 +32,10 @@
                 @click ="selectedTrack" > ▶
               </span>
             </button>
-            <button class="level-item button">
+            <button class="level-item button has-text-info">
               <span 
                 class="icon"
-                @click ="goToTrack(track.id)" > 💥
+                @click ="goToTrack(track.id)" > ↪
               </span>
             </button>
           </div>
