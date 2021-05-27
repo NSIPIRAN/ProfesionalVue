@@ -3,11 +3,11 @@
       
     <section class="section"> 
         <div class="container">
-          <input 
+          <input is-large
             type="text" 
             placeholder="Buscar canciones" 
             v-model="searchQuery"
-            @keyup.enter="searchQuery"
+            v-on:keyup.enter="search"
             >
           <a href=""> <button v-on:click.prevent="search">Buscar</button></a>
           <p class="results">{{searchMessage}}</p>
