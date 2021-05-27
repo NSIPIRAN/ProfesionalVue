@@ -19,7 +19,7 @@
       </div>
 
       <div class="content">
-        <div class="small">Duración: {{track.duration_ms}}</div>
+        <div class="small">Duración: {{track.duration_ms | ms-to-mm}}</div>
         
         <br>
         <nav class="level">

@@ -3,8 +3,9 @@
     <p class="is-128x128">
       <img :src="track.album.images[0].url">
     </p>
-    <div>
-      <div class="strong">{{ track.name }}</div>
+    <div class="mb-3">
+      <span class="strong">{{ track.name }}  </span>
+      <span class="has-text-grey is-size-7 ">  [{{ track.duration_ms | ms-to-mm}}]</span>
     </div>
     <div>
       <audio :src="track.preview_url" controls autoplay></audio>
