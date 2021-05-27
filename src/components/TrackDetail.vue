@@ -1,10 +1,46 @@
 <template>
- <div class="container">
+ <div class="container" v-if="track && track.album">
     <MLoader v-show="isLoading"> </MLoader>
     <div class="columns" v-show="!isLoading">
-      <div class="column is-4 is-offset-4">
-        <MTrack :track="track"></MTrack>
+      <div class="column is-3">
+        <figure class="image is-256x256">
+          <img :src="track.album.images[0].url" alt="Placeholder image">
+        </figure>
+        <button class="button  is-primary-invert is-large is-fullwidth mt-2">
+          <!-- selectedTrack va a comunicar al padre un evento en este componente-->
+          <span class="icon" @click ="selectedTrack" > ▶ </span>
+        </button>
       </div>
+        <div class="column is-9">
+          <article class="panel is-primary-invert">
+            <p class="panel-heading">
+              {{ track.name }}
+            </p>
+          
+            <div class="panel-block">
+              
+            </div>
+            
+            <div class="panel-block ">
+              <article class="media">
+                <div class="media-content">
+                  <div class="content">
+                    <ul v-for="(v,k) in track">
+                      <li>
+                        <strong>{{ k }}</strong>&nbsp;
+                        <span>{{ v }}</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </article>
+
+              
+            </div>
+            
+          </article>
+
+        </div>
     </div>
  </div>
   
@@ -12,10 +48,11 @@
 
 <script>
 import trackService from '../Service/track'
-import MTrack from './Track.vue'
 import MLoader from '../components/shared/Loader.vue'
+import trackMixin from '../mixins/tracks'
 export default {
-  components: {MTrack,MLoader},
+  mixins: [trackMixin],
+  components: {MLoader},
   data (){
     return {
       track: {},
@@ -38,4 +75,5 @@ export default {
   .columns{
     margin:2em;
   }
+  
 </style>

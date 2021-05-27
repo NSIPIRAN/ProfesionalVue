@@ -46,18 +46,13 @@
 </template>
 
 <script>
+import trackMixin from '../mixins/tracks'
 export default {
+  mixins: [trackMixin],
   props: {
     track: { type: Object, required:true}
   },
   methods: {
-    selectedTrack () {
-      if (!this.track.preview_url) {return}
-      // emit logrará comunicar el evento al comp padre con v-bind select e info de id
-      this.$emit('select', this.track.id)
-      this.$bus.$emit('set-track', this.track)
-    
-    },
     goToTrack (id){
       if (!this.track.preview_url) {return}
       this.$router.push({ name: 'track', params: { id }})
