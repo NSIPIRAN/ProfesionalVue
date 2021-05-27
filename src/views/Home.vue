@@ -19,6 +19,7 @@
             v-for="track in tracks" 
             :key="track.id">
             <MTrack 
+              v-blur="track.preview_url"
               :track= "track"
                @select= "setSelectedTrack"
                :class="{ 'is-active' : track.id == selectedTrack }"
