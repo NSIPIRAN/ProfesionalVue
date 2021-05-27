@@ -16,8 +16,12 @@
         </div>
         <div :class="{ 'is-active': showNav }" class="navbar-menu">
           <div class="navbar-end">
-            <a class="navbar-item is-active">Home</a>
-            <a class="navbar-item">Examples</a>
+            
+            
+            <router-link to="/"><a class="navbar-item is-active">Home</a></router-link>
+            
+            <router-link to="/about"><a class="navbar-item">About</a></router-link>
+            
             <a class="navbar-item">Documentation</a>
           </div>
         </div>

@@ -7,7 +7,7 @@
       <div class="strong">{{ track.name }}</div>
     </div>
     <div>
-      <audio :src="track.preview_url" controls ></audio>
+      <audio :src="track.preview_url" controls autoplay></audio>
     </div>
   </div>
 </template>
@@ -27,3 +27,9 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+  img {
+    width: 124px;
+    border-radius: 50%;
+  }
+</style>
