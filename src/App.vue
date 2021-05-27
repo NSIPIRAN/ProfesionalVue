@@ -1,27 +1,25 @@
 <template>
   <div id="app">
-    <HelloWorld msg="Hola bebe"/>
-    <h1>{{msg}}</h1>
-    <p>{{person.name}}</p>
+    <MHeader></MHeader>
+      <router-view to="Home"></router-view>
+    <MFooter ></MFooter>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import MFooter from './components/layout/footer.vue'
+import MHeader from './components/layout/header.vue'
+
+
 
 export default {
-  name: 'App',
-  data() {
-    return {
-      msg: 'Hola mundo',
-      person: {
-        name: 'juan'
-      }
-    }
-  },
-  components: {
-    HelloWorld
+  name: 'app',
+  components: { MFooter, MHeader},
   }
-}
 </script>
+<style lang="scss">
+  @import "./scss/main.scss";
 
+
+</style>
