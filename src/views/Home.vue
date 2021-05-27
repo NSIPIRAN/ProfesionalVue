@@ -3,13 +3,20 @@
       
     <section class="section"> 
         <div class="container">
-          <input is-large
-            type="text" 
-            placeholder="Buscar canciones" 
-            v-model="searchQuery"
-            v-on:keyup.enter="search"
-            >
-          <a href=""> <button v-on:click.prevent="search">Buscar</button></a>
+          <div class="columns is-centered"> 
+            <div class="column  is-half">
+              <input 
+                class="input is-primary" 
+                type="text" 
+                placeholder="Buscar canciones" 
+                v-model="searchQuery"
+                v-on:keyup.enter="search"
+                >
+              </div>
+              <div class="column is-narrow ">
+                <a href=""> <button class="button" v-on:click.prevent="search">Buscar</button></a>
+              </div>
+          </div>
           <p class="results">{{searchMessage}}</p>
         </div>
       <MLoader v-show="isLoading"> </MLoader>

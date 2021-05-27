@@ -14,7 +14,7 @@
         <div class="column is-9">
           <article class="panel is-primary-invert">
             <p class="panel-heading">
-              {{ track.name }}
+              {{ trackTitle }}
             </p>
           
             <div class="panel-block">
@@ -47,27 +47,41 @@
 </template>
 
 <script>
-import trackService from '../Service/track'
+
 import MLoader from '../components/shared/Loader.vue'
 import trackMixin from '../mixins/tracks'
+import {mapState, mapActions, mapGetters} from 'vuex'
+
 export default {
   mixins: [trackMixin],
   components: {MLoader},
   data (){
     return {
-      track: {},
        isLoading:false
     }
+  },
+  computed: {
+    ...mapState(['track']),
+    ...mapGetters(['trackTitle'])
   },
   created(){
     //leer el id de la url:
     const id = this.$route.params.id
-    this.isLoading =true
-    trackService.getById(id)
-    .then(res=>{
-      this.track=res
-      this.isLoading =false
-    })
+    if(!this.track || !this.track.id || this.track.id != id){
+        this.isLoading =true
+        console.log( this.isLoading)
+        this.getTrackById({id})
+        .then(()=>{
+             console.log('probando q pasa aqui')
+             this.isLoading =false
+             console.log( this.isLoading)
+        })
+    
+    }
+    
+  },
+  methods: {
+    ...mapActions(['getTrackById'])
   }
 }
 </script>

@@ -18,11 +18,11 @@
           <div class="navbar-end">
             
             
-            <router-link to="/"><a class="navbar-item is-active">Home</a></router-link>
+            <router-link to="/"><a class="navbar-item" :class="{ 'is-active' : $route.path == '/'}">Home</a></router-link>
             
-            <router-link to="/about"><a class="navbar-item">About</a></router-link>
+            <router-link to="/about"><a class="navbar-item" :class="{ 'is-active' : $route.path == '/about'}">About</a></router-link>
             
-            <a class="navbar-item">Documentation</a>
+         
           </div>
         </div>
      
